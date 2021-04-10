@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class AK47 extends Weapon {
+    static Scanner scanner = new Scanner(System.in);;
     private boolean hasUnderbarrel;
     private int underbarrelAmmoCapacity;
 
@@ -51,7 +52,6 @@ public class AK47 extends Weapon {
     }
     public void selectUnderbarrelAmmoCapacity()
     {
-        Scanner scanner = new Scanner(System.in);
         String choice;
         System.out.println("Does this gun have an underbarrel");
         System.out.println("TYPE \"YES\" OR \"NO\"");
@@ -74,6 +74,5 @@ public class AK47 extends Weapon {
                 this.hasUnderbarrel = false;
                 this.underbarrelAmmoCapacity = 0;
             }
-        scanner.close();
     }
 }

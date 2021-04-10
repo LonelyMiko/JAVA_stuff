@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Pistol extends Weapon {
+    private static Scanner scanner = new Scanner(System.in);;
     private boolean hasSuppressor;
 
     public Pistol() {
@@ -48,7 +49,6 @@ public class Pistol extends Weapon {
     }
     public void selectSuppressor()
     {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Does this gun have an suppressor?");
         System.out.println("TYPE \"YES\" OR \"NO\"");
         String choice = scanner.next();
@@ -61,6 +61,5 @@ public class Pistol extends Weapon {
         {
             this.hasSuppressor = true;
         }
-        scanner.close();
     }
 }

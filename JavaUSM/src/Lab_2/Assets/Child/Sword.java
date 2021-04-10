@@ -5,7 +5,7 @@ import Lab_2.Assets.Parent.Melee;
 
 import java.util.Scanner;
 
-public class Sword extends Melee implements IMelee {
+public class Sword extends Melee {
     private boolean isExcalibur;
 
     public Sword(String name, double price, double damage, boolean isExcalibur) {

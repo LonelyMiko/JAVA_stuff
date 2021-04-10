@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public abstract class Weapon implements IWeapon {
-    Scanner scanner;
+    static Scanner scanner = new Scanner(System.in);;
 
     private String name;
     private String bulletType;
@@ -28,10 +28,10 @@ public abstract class Weapon implements IWeapon {
         this.ammoCapacity = ammoCapacity;
         this.isAmmoExtended = isAmmoExtended;
         this.statistics = statistics;
+        validateData();
     }
 
     public Weapon() {
-        scanner = new Scanner(System.in);
         System.out.print("Name: ");
         this.name = scanner.next();
         selectWeaponType();
@@ -43,6 +43,21 @@ public abstract class Weapon implements IWeapon {
         this.ammoCapacity = scanner.nextByte();
         selectIsAmmoExtended();
         selectStatistics();
+        validateData();
+    }
+
+    private void validateData() {
+        if (this.price < 0) {
+            this.price = 0;
+        }
+        if (this.ammoCapacity < 0) {
+            this.ammoCapacity = 0;
+        }
+        statistics.forEach((s, aDouble) -> {
+            if (aDouble < 0) {
+                aDouble = 0.0;
+            }
+        });
     }
 
     public String getName() {
@@ -74,7 +89,13 @@ public abstract class Weapon implements IWeapon {
     }
 
     public void setPrice(double price) {
-        this.price = price;
+        if (price > 0) {
+            this.price = price;
+        }
+        else
+            {
+                this.price = 0;
+            }
     }
 
     public byte getAmmoCapacity() {
@@ -82,7 +103,14 @@ public abstract class Weapon implements IWeapon {
     }
 
     public void setAmmoCapacity(byte ammoCapacity) {
-        this.ammoCapacity = ammoCapacity;
+        if (ammoCapacity > 0)
+        {
+            this.ammoCapacity = ammoCapacity;
+        }
+        else
+            {
+                this.ammoCapacity = 0;
+            }
     }
 
     public void setAmmoExtended(boolean ammoExtended) {
@@ -112,6 +140,12 @@ public abstract class Weapon implements IWeapon {
     }
 
     public void setStatistics(Map<String, Double> statistics) {
+        statistics.forEach((s,aDouble)->{
+            if (aDouble < 0)
+            {
+                aDouble = 0.0;
+            }
+        });
         this.statistics = statistics;
     }
 
@@ -128,6 +162,7 @@ public abstract class Weapon implements IWeapon {
         }
         return weapon2;
     }
+
     public void selectWeaponType()
     {
         System.out.println("Select Weapon Type:");
